@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FindrikStudio - Веб-разработчик</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #F2F1ED;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        header {
+            background-color: rgba(113, 0, 20, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            border-bottom: 2px solid rgba(242, 241, 237, 0.1);
+            height: 60px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 100%;
+        }
+        
+        .section-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            height: 60px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #F2F1ED;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-flower {
+            font-size: 26px;
+            color: #F2F1ED;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #F2F1ED;
+            font-weight: 500;
+            font-size: 18px;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #F2F1ED;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #F2F1ED;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding-top: 60px;
+            position: relative;
+            z-index: 2;
+            background-color: #251313;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 60px;
+        }
+        
+        .hero-image {
+            flex: 0 0 45%;
+            max-width: 45%;
+            text-align: center;
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            margin-left: -20px;
+        }
+        
+        .image-frame {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #710014;
+            overflow: hidden;
+        }
+        
+        .image-frame::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 8px solid #710014;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-content {
+            flex: 0 0 55%;
+            max-width: 55%;
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #F2F1ED;
+            line-height: 1.2;
+        }
+        
+        .accent {
+            color: #af0928;
+        }
+        
+        h2 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #F2F1ED;
+            font-weight: 500;
+        }
+        
+        .description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #F2F1ED;
+            background-color: rgba(113, 0, 20, 0.3);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #710014;
+        }
+        
+        .buttons {
+            margin-bottom: 30px;
+        }
+        
+        .main-button {
+            display: block;
+            width: 100%;
+            background-color: #710014;
+            color: #F2F1ED;
+            padding: 18px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            border: 2px solid #710014;
+            box-shadow: 0 5px 15px rgba(113, 0, 20, 0.5);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .main-button:hover {
+            background-color: #af0928;
+            box-shadow: 0 8px 20px rgba(113, 0, 20, 0.7);
+        }
+        
+        .skills-info {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 15px;
+            justify-content: space-between;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            background-color: rgba(113, 0, 20, 0.2);
+            padding: 15px 20px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 0;
+            justify-content: center;
+            transition: all 0.3s ease;
+            gap: 12px;
+        }
+        
+        .skill-item i {
+            color: #F2F1ED;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .skill-item span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        /* PNG элементы поверх контента */
+        .plate {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .plate-1 {
+            width: 200px;
+            top: 440px;
+            left: 10px;
+            transform: rotate(10deg);
+        }
+        
+        .plate-2 {
+            width: 195px;
+            top: 70px;
+            right: 55%;
+            transform: rotate(10deg);
+        }
+
+        .flowers {
+            position: absolute;
+            z-index: 11;
+            pointer-events: none;
+            width: 180px;
+            top: 70px;
+            right: 5%;
+            transform: rotate(170deg);
+        }
+
+        .achievements-section {
+            background: linear-gradient(rgba(90, 65, 65, 0.9), rgba(0,0,0,0.9)), url("Балкон.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #F2F1ED;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            color: #F2F1ED;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #af0928;
+        }
+        
+        .achievements-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .achievement-card {
+            background: rgba(113, 0, 20, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            flex: 1 1 calc(33.333% - 30px);
+            min-width: 300px;
+            max-width: 350px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #af0928;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .achievement-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #F2F1ED;
+        }
+        
+        .achievement-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #F2F1ED;
+        }
+        
+        .achievement-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #F2F1ED;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .achievement-button {
+            display: block;
+            background-color: #af0928;
+            color: #F2F1ED;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .achievement-button:hover {
+            background-color: #850c22;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #000;
+            color: #af0928;
+            padding: 50px 0 30px;
+            border-top: 3px solid #710014;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 80px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 0 0 auto;
+            text-align: center;
+        }
+        
+        .footer-section h3 {
+            color: #af0928;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-section p {
+            color: #af0928;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            max-width: 300px;
+        }
+        
+        .footer-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            color: #af0928;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: #af0928;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #710014;
+            color: #af0928;
+        }
+        
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 1200px) {
+            .image-frame {
+                width: 450px;
+                height: 450px;
+            }
+            
+            .plate-1 {
+                width: 180px;
+                left: 10%;
+            }
+            
+            .plate-2 {
+                width: 160px;
+                right: 5%;
+            }
+            
+            .flowers {
+                width: 190px;
+                right: 5%;
+            }
+            
+            .achievement-card {
+                flex: 1 1 calc(50% - 30px);
+            }
+            
+            .footer-content {
+                gap: 60px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .image-frame {
+                width: 400px;
+                height: 400px;
+            }
+            
+            .skills-info {
+                flex-wrap: wrap;
+            }
+            
+            .skill-item {
+                flex: 0 0 calc(33.333% - 10px);
+            }
+            
+            .plate-1 {
+                width: 150px;
+                left: 5%;
+            }
+            
+            .plate-2 {
+                width: 140px;
+                right: 3%;
+            }
+            
+            .flowers {
+                width: 160px;
+                right: 3%;
+            }
+            
+            .achievements-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .achievement-card {
+                flex: 1 1 100%;
+                max-width: 400px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .footer-section {
+                flex: 1 1 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .hero-content, .hero-image {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            .hero-image {
+                justify-content: center;
+                margin-left: 0;
+            }
+            
+            .image-frame {
+                width: 350px;
+                height: 350px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            .description {
+                font-size: 16px;
+            }
+            
+            .main-button {
+                font-size: 16px;
+                padding: 16px 30px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .skill-item {
+                flex: 0 0 100%;
+                margin-bottom: 10px;
+            }
+            
+            .plate-1, .plate-2, .flowers {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .achievement-card {
+                min-width: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .image-frame {
+                width: 300px;
+                height: 300px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 18px;
+            }
+            
+            .skill-item {
+                padding: 12px 15px;
+            }
+            
+            .skill-item i {
+                font-size: 20px;
+            }
+            
+            .skill-item span {
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .achievement-card {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                gap: 30px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <img src="Книги.png" alt="" class="plate plate-1">
+    <img src="Пластинка.png" alt="" class="plate plate-2">
+    <img src="Цветы.png" alt="" class="flowers">
+    
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-spa logo-flower"></i>
+                    FindrikStudio
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#achievements">Мои достижения</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-wrapper">
+                <div class="hero-image">
+                    <div class="image-frame">
+                        <img src="Яя.jpg" alt="Фото веб-разработчика">
+                    </div>
+                </div>
+                <div class="hero-content">
+                    <h1>Привет! Я <span class="accent">Анна</span><p>— веб-разработчик</p></h1>
+                    <h2>Создаю современные веб-сайты</h2>
+                    <p class="description">
+                        Специализируюсь на разработке адаптивных сайтов и веб-приложений с использованием современных технологий. 
+                        Имею более опыт работы с клиентами из различных сфер.
+                    </p>
+                    
+                    <div class="buttons">
+                        <a href="#achievements" class="main-button">Посмотреть мои достижения</a>
+                    </div>
+                    
+                    <div class="skills-info">
+                        <div class="skill-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <span>WEB-design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="achievements-section">
+        <div class="section-container">
+            <h2 class="section-title">Мои достижения</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <img src="Пластинка красная.jpg" alt="Клиенты" class="achievement-image">
+                    <h3 class="achievement-title">Увеличение клиентской базы</h3>
+                    <p class="achievement-description">За последний год количество клиентов увеличилось на 40%, что подтверждает высокий уровень доверия к нашим услугам.</p>
+                    <button class="achievement-button">Подробнее</button>
+                </div>
+                
+                <div class="achievement-card">
+                    <img src="Кот.jpg" alt="Награда" class="achievement-image">
+                    <h3 class="achievement-title">Профессиональное признание</h3>
+                    <p class="achievement-description">Получение награды "Лучший веб-разработчик года" в 2023 году среди независимых специалистов Беларуси.</p>
+                    <button class="achievement-button">Подробнее</button>
+                </div>
+                
+                <div class="achievement-card">
+                    <img src="Луна.jpg" alt="Проекты" class="achievement-image">
+                    <h3 class="achievement-title">Успешные проекты</h3>
+                    <p class="achievement-description">Более 50 успешно реализованных проектов для клиентов из различных отраслей бизнеса за последние 2 года.</p>
+                    <button class="achievement-button">Подробнее</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FindrikStudio</h3>
+                    <p>Создаю современные и функциональные веб-решения для вашего бизнеса. Каждый проект - это индивидуальный подход и внимание к деталям.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <div class="footer-contact">
+                        <i class="fas fa-phone"></i>
+                        <span>+375 (29) 819-95-61</span>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fas fa-envelope"></i>
+                        <span>annafindrik@gmail.com</span>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Минск, Беларусь</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Социальные сети</h3>
+                    <div class="footer-contact">
+                        <i class="fab fa-instagram"></i>
+                        <span>@findrikstudio</span>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fab fa-telegram"></i>
+                        <span>@findrikstudio</span>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fab fa-github"></i>
+                        <span>github.com/findrik</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 FindrikStudio. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
