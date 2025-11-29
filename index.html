@@ -210,7 +210,7 @@
         }
         
         .buttons {
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
         
         .main-button {
@@ -296,16 +296,27 @@
             z-index: 11;
             pointer-events: none;
             width: 180px;
-            top: 70px;
+            top: 95px;
             right: 5%;
             transform: rotate(170deg);
         }
 
+        /* Секция "Мои достижения" */
         .achievements-section {
             background: linear-gradient(rgba(90, 65, 65, 0.9), rgba(0,0,0,0.9)), url("Балкон.jpg");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            color: #F2F1ED;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Секция "Технологии" */
+        .technologies-section {
+            background-color: #251313;
             color: #F2F1ED;
             min-height: 100vh;
             display: flex;
@@ -353,6 +364,56 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+        }
+        
+        /* Сетка для технологий */
+        .technologies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .technology-card {
+            background: rgba(113, 0, 20, 0.9);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border-top: 4px solid #af0928;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: 350px;
+        }
+        
+        .technology-card:hover {
+            box-shadow: 0 15px 40px rgba(113, 0, 20, 0.5);
+        }
+        
+        .technology-icon {
+            font-size: 48px;
+            color: #F2F1ED;
+            margin-bottom: 20px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .technology-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #F2F1ED;
+        }
+        
+        .technology-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #F2F1ED;
+            flex-grow: 1;
         }
         
         .achievement-image {
@@ -444,6 +505,16 @@
             margin-right: 10px;
             color: #af0928;
         }
+
+        .social-link {
+            text-decoration: none;
+            color: #af0928;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #F2F1ED;
+        }
         
         .footer-bottom {
             text-align: center;
@@ -476,6 +547,10 @@
             
             .achievement-card {
                 flex: 1 1 calc(50% - 30px);
+            }
+            
+            .technologies-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
             
             .footer-content {
@@ -520,6 +595,11 @@
             .achievement-card {
                 flex: 1 1 100%;
                 max-width: 400px;
+            }
+            
+            .technologies-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
             }
             
             .footer-content {
@@ -592,6 +672,16 @@
             .achievement-card {
                 min-width: 250px;
             }
+            
+            .technologies-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .technology-card {
+                min-height: 300px;
+                padding: 25px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -628,6 +718,16 @@
                 padding: 20px;
             }
             
+            .technology-card {
+                padding: 20px;
+                min-height: 280px;
+            }
+            
+            .technology-icon {
+                font-size: 40px;
+                height: 60px;
+            }
+            
             .footer-content {
                 gap: 30px;
             }
@@ -652,6 +752,7 @@
                     <li><a href="#about">Обо мне</a></li>
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#achievements">Мои достижения</a></li>
+                    <li><a href="#technologies">Технологии</a></li>
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
             </nav>
@@ -677,21 +778,6 @@
                     <div class="buttons">
                         <a href="#achievements" class="main-button">Посмотреть мои достижения</a>
                     </div>
-                    
-                    <div class="skills-info">
-                        <div class="skill-item">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-css3-alt"></i>
-                            <span>CSS</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-paint-brush"></i>
-                            <span>WEB-design</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -711,15 +797,70 @@
                 <div class="achievement-card">
                     <img src="Кот.jpg" alt="Награда" class="achievement-image">
                     <h3 class="achievement-title">Профессиональное признание</h3>
-                    <p class="achievement-description">Получение награды "Лучший веб-разработчик года" в 2023 году среди независимых специалистов Беларуси.</p>
+                    <p class="achievement-description">Получение награды "Лучший веб-разработчик года" в 2025 году среди независимых специалистов Беларуси.</p>
                     <button class="achievement-button">Подробнее</button>
                 </div>
                 
                 <div class="achievement-card">
                     <img src="Луна.jpg" alt="Проекты" class="achievement-image">
-                    <h3 class="achievement-title">Успешные проекты</h3>
+                    <h3 class="achievement-title">Множество успешных проектов</h3>
                     <p class="achievement-description">Более 50 успешно реализованных проектов для клиентов из различных отраслей бизнеса за последние 2 года.</p>
                     <button class="achievement-button">Подробнее</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technologies" class="technologies-section">
+        <div class="section-container">
+            <h2 class="section-title">Технологии, которыми я владею</h2>
+            <div class="technologies-grid">
+                <div class="technology-card">
+                    <div class="technology-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3 class="technology-title">HTML</h3>
+                    <p class="technology-description">Создание семантической и доступной разметки с использованием современных стандартов HTML5. Опыт работы с формами, таблицами, мультимедиа и API.</p>
+                </div>
+                
+                <div class="technology-card">
+                    <div class="technology-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <h3 class="technology-title">CSS</h3>
+                    <p class="technology-description">Продвинутое владение CSS3: Flexbox, Grid, анимации, трансформации. Создание адаптивных и кроссбраузерных интерфейсов с использованием современных возможностей.</p>
+                </div>
+                
+                <div class="technology-card">
+                    <div class="technology-icon">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <h3 class="technology-title">JavaScript</h3>
+                    <p class="technology-description">Разработка интерактивных веб-приложений с использованием современного ES6+ синтаксиса. Работа с DOM, событиями, асинхронным программированием и API.</p>
+                </div>
+                
+                <div class="technology-card">
+                    <div class="technology-icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3 class="technology-title">Canva</h3>
+                    <p class="technology-description">Создание профессионального графического дизайна для веб-сайтов и социальных сетей. Разработка логотипов, баннеров, презентаций и маркетинговых материалов.</p>
+                </div>
+                
+                <div class="technology-card">
+                    <div class="technology-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3 class="technology-title">Python</h3>
+                    <p class="technology-description">Разработка серверных приложений, автоматизация задач и анализ данных. Опыт работы с Django, Flask, а также библиотеками для data science и машинного обучения.</p>
+                </div>
+                
+                <div class="technology-card">
+                    <div class="technology-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="technology-title">Базы данных</h3>
+                    <p class="technology-description">Работа с реляционными (MySQL, PostgreSQL) и нереляционными (MongoDB) базами данных. Проектирование схем, оптимизация запросов и обеспечение целостности данных.</p>
                 </div>
             </div>
         </div>
@@ -728,11 +869,6 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>FindrikStudio</h3>
-                    <p>Создаю современные и функциональные веб-решения для вашего бизнеса. Каждый проект - это индивидуальный подход и внимание к деталям.</p>
-                </div>
-                
                 <div class="footer-section">
                     <h3>Контакты</h3>
                     <div class="footer-contact">
@@ -753,21 +889,21 @@
                     <h3>Социальные сети</h3>
                     <div class="footer-contact">
                         <i class="fab fa-instagram"></i>
-                        <span>@findrikstudio</span>
+                        <a href="https://instagram.com/findrikstudio" class="social-link" target="_blank">@findrikstudio</a>
                     </div>
                     <div class="footer-contact">
                         <i class="fab fa-telegram"></i>
-                        <span>@findrikstudio</span>
+                        <a href="https://t.me/mandarinnn" class="social-link" target="_blank">@findrikstudio</a>
                     </div>
                     <div class="footer-contact">
                         <i class="fab fa-github"></i>
-                        <span>github.com/findrik</span>
+                        <a href="https://github.com/AnnaFin" class="social-link" target="_blank">github.com/AnnaFin</a>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 FindrikStudio. Все права защищены.</p>
+                <p>&copy; 2025 FindrikStudio. Все права защищены.</p>
             </div>
         </div>
     </footer>
