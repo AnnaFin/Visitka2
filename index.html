@@ -112,6 +112,77 @@
             width: 100%;
         }
         
+        /* Бургер меню */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .burger-menu span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #F2F1ED;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .burger-menu.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger-menu.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(113, 0, 20, 0.98);
+            z-index: 999;
+            padding: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .mobile-nav.active {
+            display: block;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+        
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: #F2F1ED;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.3s;
+        }
+        
+        .mobile-nav-links a:hover {
+            background-color: rgba(242, 241, 237, 0.1);
+        }
+        
         .hero {
             display: flex;
             align-items: center;
@@ -179,6 +250,8 @@
         .hero-content {
             flex: 0 0 55%;
             max-width: 55%;
+            display: flex;
+            flex-direction: column;
         }
         
         h1 {
@@ -207,10 +280,12 @@
             padding: 25px;
             border-radius: 8px;
             border-left: 4px solid #710014;
+            flex-grow: 1;
         }
         
         .buttons {
             margin-bottom: 10px;
+            margin-top: auto; /* Это поможет кнопке оставаться внизу контейнера */
         }
         
         .main-button {
@@ -299,6 +374,120 @@
             top: 95px;
             right: 5%;
             transform: rotate(170deg);
+        }
+
+        /* Секция "Обо мне" - ИЗМЕНЕНО */
+        .about-section {
+            background: linear-gradient(rgba(90, 65, 65, 0.9), rgba(0,0,0,0.9)), url("Балкон.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #F2F1ED;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(37, 19, 19, 0.85);
+            border-radius: 12px;
+            border-left: 4px solid #af0928;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+        
+        .about-text:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Секция "Услуги" - ИЗМЕНЕНО */
+        .services-section {
+            background-color: #251313;
+            color: #F2F1ED;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .services-wrapper {
+            display: flex;
+            align-items: stretch; /* Добавлено для выравнивания высоты */
+            justify-content: space-between;
+            width: 100%;
+            gap: 60px;
+        }
+        
+        .services-image {
+            flex: 0 0 45%;
+            max-width: 45%;
+            text-align: center;
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            margin-left: -20px;
+        }
+        
+        .services-image-frame {
+            position: relative;
+            width: 500px;
+            height: 470px;
+            border-radius: 20px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #710014;
+            overflow: hidden;
+        }
+        
+        .services-image-frame::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 8px solid #710014;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .services-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .services-content {
+            flex: 0 0 55%;
+            max-width: 55%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .services-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #F2F1ED;
+            background-color: rgba(113, 0, 20, 0.3);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #710014;
+            flex-grow: 1; /* Чтобы блок занимал всю доступную высоту */
         }
 
         /* Секция "Мои достижения" */
@@ -395,7 +584,7 @@
         .technology-icon {
             font-size: 48px;
             color: #F2F1ED;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             height: 80px;
             display: flex;
             align-items: center;
@@ -530,6 +719,11 @@
                 height: 450px;
             }
             
+            .services-image-frame {
+                width: 450px;
+                height: 450px;
+            }
+            
             .plate-1 {
                 width: 180px;
                 left: 10%;
@@ -556,104 +750,220 @@
             .footer-content {
                 gap: 60px;
             }
+            
+            .about-content {
+                padding: 35px;
+            }
         }
         
         @media (max-width: 992px) {
-            .image-frame {
-                width: 400px;
-                height: 400px;
-            }
-            
-            .skills-info {
-                flex-wrap: wrap;
-            }
-            
-            .skill-item {
-                flex: 0 0 calc(33.333% - 10px);
-            }
-            
-            .plate-1 {
-                width: 150px;
-                left: 5%;
-            }
-            
-            .plate-2 {
-                width: 140px;
-                right: 3%;
-            }
-            
-            .flowers {
-                width: 160px;
-                right: 3%;
-            }
-            
-            .achievements-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .achievement-card {
-                flex: 1 1 100%;
-                max-width: 400px;
-            }
-            
-            .technologies-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 40px;
-                text-align: center;
-            }
-            
-            .footer-section {
-                flex: 1 1 100%;
-            }
-        }
+    .plate-1, .plate-2, .flowers {
+        display: none;
+    }
+
+    .hero-wrapper {
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        padding: 40px 0;
+    }
+    
+    .hero-content, .hero-image {
+        flex: 0 0 48%;
+        max-width: 48%;
+    }
+
+    .image-frame {
+        width: 350px;
+        height: 350px;
+    }
+
+    h1 {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+    
+    h1 p {
+        font-size: 28px;
+        margin-top: 5px;
+    }
+    
+    h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .description {
+        font-size: 16px;
+        padding: 20px;
+        margin-bottom: 25px;
+        flex-grow: 1;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .services-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .services-content, .services-image {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .services-image {
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .nav-links {
+        display: none;
+    }
+    
+    .burger-menu {
+        display: flex;
+    }
+
+    .skills-info {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .skill-item {
+        flex: 0 0 calc(33.333% - 10px);
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+    
+    .achievements-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .achievement-card {
+        flex: 1 1 100%;
+        max-width: 400px;
+    }
+    
+    .technologies-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .footer-section {
+        flex: 1 1 100%;
+    }
+    
+    .about-content {
+        padding: 30px;
+    }
+    
+    .about-text {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 850px) {
+    .hero-wrapper {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .hero-content, .hero-image {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .image-frame {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .hero-content {
+        padding: 0 20px;
+    }
+    
+    .description {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
         
         @media (max-width: 768px) {
             .hero-wrapper {
                 flex-direction: column;
                 text-align: center;
                 gap: 40px;
+                padding: 0 15px;
             }
             
             .hero-content, .hero-image {
                 flex: 0 0 100%;
                 max-width: 100%;
+                width: 100%;
             }
             
             .hero-image {
                 justify-content: center;
                 margin-left: 0;
+                padding: 0 15px;
+            }
+            
+            .hero-content {
+                padding: 0 15px;
             }
             
             .image-frame {
                 width: 350px;
                 height: 350px;
+                max-width: 100%;
+            }
+            
+            .services-image-frame {
+                width: 350px;
+                height: 350px;
+                max-width: 100%;
             }
             
             h1 {
                 font-size: 32px;
+                margin-bottom: 15px;
             }
             
             h2 {
                 font-size: 20px;
+                margin-bottom: 20px;
             }
             
             .description {
                 font-size: 16px;
+                padding: 20px;
+                margin: 0 0 30px 0;
             }
             
             .main-button {
                 font-size: 16px;
                 padding: 16px 30px;
+                margin: 0;
+                width: 100%;
             }
             
-            .nav-links {
-                display: none;
+            .buttons {
+                width: 100%;
+                margin-top: 20px;
             }
             
             .skill-item {
@@ -667,27 +977,66 @@
             
             .section-title {
                 font-size: 32px;
+                padding: 0 15px;
+            }
+            
+            .section-title::after {
+                bottom: -10px;
             }
             
             .achievement-card {
                 min-width: 250px;
+                margin: 0 15px;
             }
             
             .technologies-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
+                padding: 0 15px;
             }
             
             .technology-card {
                 min-height: 300px;
                 padding: 25px;
+                margin: 0 10px;
+            }
+            
+            .about-content {
+                padding: 25px;
+                margin: 0 15px;
+            }
+            
+            .about-text {
+                font-size: 16px;
+            }
+            
+            .services-description {
+                padding: 20px;
+                margin: 0 15px;
+            }
+            
+            .section-container {
+                padding: 60px 15px;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero {
+                padding: 60px 0;
             }
         }
         
         @media (max-width: 480px) {
             .image-frame {
-                width: 300px;
-                height: 300px;
+                width: 280px;
+                height: 280px;
+            }
+            
+            .services-image-frame {
+                width: 280px;
+                height: 280px;
             }
             
             h1 {
@@ -700,6 +1049,7 @@
             
             .skill-item {
                 padding: 12px 15px;
+                margin: 0 10px 10px 10px;
             }
             
             .skill-item i {
@@ -712,10 +1062,12 @@
             
             .section-title {
                 font-size: 28px;
+                margin-bottom: 40px;
             }
             
             .achievement-card {
                 padding: 20px;
+                min-width: 250px;
             }
             
             .technology-card {
@@ -730,6 +1082,87 @@
             
             .footer-content {
                 gap: 30px;
+                padding: 0 15px;
+            }
+            
+            .about-content {
+                padding: 20px;
+            }
+            
+            .about-text {
+                font-size: 15px;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+            
+            .logo-flower {
+                font-size: 20px;
+            }
+            
+            .burger-menu {
+                width: 25px;
+                height: 18px;
+            }
+            
+            .main-button {
+                padding: 14px 25px;
+                font-size: 15px;
+            }
+            
+            .mobile-nav-links a {
+                font-size: 18px;
+                padding: 12px 20px;
+            }
+            
+            .hero-wrapper {
+                padding: 0 10px;
+            }
+            
+            .hero-content, .hero-image {
+                padding: 0 10px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .image-frame {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .services-image-frame {
+                width: 250px;
+                height: 250px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .achievement-card {
+                min-width: 220px;
+                padding: 15px;
+            }
+            
+            .technology-card {
+                padding: 15px;
+            }
+            
+            .about-content {
+                padding: 15px;
+            }
+            
+            .hero-wrapper {
+                padding: 0 5px;
+            }
+            
+            .hero-content, .hero-image {
+                padding: 0 5px;
             }
         }
     </style>
@@ -753,9 +1186,22 @@
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#achievements">Мои достижения</a></li>
                     <li><a href="#technologies">Технологии</a></li>
-                    <li><a href="#contact">Контакты</a></li>
                 </ul>
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </nav>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <ul class="mobile-nav-links">
+                <li><a href="#home" onclick="closeMobileMenu()">Главная</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">Обо мне</a></li>
+                <li><a href="#services" onclick="closeMobileMenu()">Услуги</a></li>
+                <li><a href="#achievements" onclick="closeMobileMenu()">Мои достижения</a></li>
+                <li><a href="#technologies" onclick="closeMobileMenu()">Технологии</a></li>
+            </ul>
         </div>
     </header>
 
@@ -776,7 +1222,65 @@
                     </p>
                     
                     <div class="buttons">
-                        <a href="#achievements" class="main-button">Посмотреть мои достижения</a>
+                        <a href="#about" class="main-button">Узнать обо мне подробнее!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="section-container">
+            <h2 class="section-title">Обо мне</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    Я веб-разработчик с более чем 3-летним опытом работы в сфере IT. Моя специализация — создание современных, адаптивных веб-сайтов и веб-приложений, которые не только выглядят привлекательно, но и эффективно решают бизнес-задачи клиентов.
+                </p>
+                <p class="about-text">
+                    Имею техническое образование в IT-сфере и постоянно совершенствую свои навыки. Регулярно прохожу курсы, изучаю новые технологии и фреймворки, чтобы оставаться в курсе последних тенденций веб-разработки. В своей работе я придерживаюсь индивидуального подхода к каждому проекту. Для меня важно не просто выполнить техническое задание, а понять потребности клиента, его цели и ожидания. Внимание к деталям, ответственность и стремление к идеальному результату — вот принципы, которые лежат в основе моей работы.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <div class="section-container">
+            <h2 class="section-title">Мои услуги</h2>
+            <div class="services-wrapper">
+                <div class="services-image">
+                    <div class="services-image-frame">
+                        <img src="Сайт.jpg" alt="Веб-разработка">
+                    </div>
+                </div>
+                <div class="services-content">
+                    <div class="services-description">
+                        <p>Предлагаю полный спектр услуг по веб-разработке, от создания простых сайтов-визиток до сложных веб-приложений.</p>
+                        
+                        <h3 style="margin-top: 20px; color: #af0928;">Основные направления:</h3>
+                        <ul style="list-style-type: none; margin-top: 15px;">
+                            <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
+                                <i class="fas fa-check" style="color: #af0928; position: absolute; left: 0;"></i>
+                                Разработка адаптивных веб-сайтов
+                            </li>
+                            <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
+                                <i class="fas fa-check" style="color: #af0928; position: absolute; left: 0;"></i>
+                                Создание интернет-магазинов
+                            </li>
+                            <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
+                                <i class="fas fa-check" style="color: #af0928; position: absolute; left: 0;"></i>
+                                Разработка корпоративных порталов
+                            </li>
+                            <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
+                                <i class="fas fa-check" style="color: #af0928; position: absolute; left: 0;"></i>
+                                Техническая поддержка и обслуживание
+                            </li>
+                            <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
+                                <i class="fas fa-check" style="color: #af0928; position: absolute; left: 0;"></i>
+                                Оптимизация и доработка существующих проектов
+                            </li>
+                        </ul>
+                        
+                        <p style="margin-top: 20px;">Каждый проект начинается с консультации, на которой мы определяем цели, задачи и бюджет. Далее следует этап проектирования, разработки и тестирования.</p>
                     </div>
                 </div>
             </div>
@@ -790,7 +1294,7 @@
                 <div class="achievement-card">
                     <img src="Пластинка красная.jpg" alt="Клиенты" class="achievement-image">
                     <h3 class="achievement-title">Увеличение клиентской базы</h3>
-                    <p class="achievement-description">За последний год количество клиентов увеличилось на 40%, что подтверждает высокий уровень доверия к нашим услугам.</p>
+                    <p class="achievement-description">За последний год количество клиентов увеличилось на 40%, что подтверждает высокий уровень доверия к моим услугам.</p>
                     <button class="achievement-button">Подробнее</button>
                 </div>
                 
@@ -866,7 +1370,7 @@
         </div>
     </section>
 
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -907,5 +1411,38 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const burgerMenu = document.getElementById('burgerMenu');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            burgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const burgerMenu = document.getElementById('burgerMenu');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            burgerMenu.classList.remove('active');
+            mobileNav.classList.remove('active');
+        }
+
+        document.getElementById('burgerMenu').addEventListener('click', toggleMobileMenu);
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        document.addEventListener('click', function(event) {
+            const burgerMenu = document.getElementById('burgerMenu');
+            const mobileNav = document.getElementById('mobileNav');
+            const isClickInsideMenu = burgerMenu.contains(event.target) || mobileNav.contains(event.target);
+            
+            if (!isClickInsideMenu && mobileNav.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+    </script>
 </body>
 </html>
