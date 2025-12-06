@@ -111,8 +111,7 @@
         .nav-links a:hover::after {
             width: 100%;
         }
-        
-        /* Бургер меню */
+
         .burger-menu {
             display: none;
             flex-direction: column;
@@ -285,7 +284,7 @@
         
         .buttons {
             margin-bottom: 10px;
-            margin-top: auto; /* Это поможет кнопке оставаться внизу контейнера */
+            margin-top: auto;
         }
         
         .main-button {
@@ -344,8 +343,7 @@
             font-weight: 600;
             font-size: 16px;
         }
-        
-        /* PNG элементы поверх контента */
+
         .plate {
             position: absolute;
             z-index: 10;
@@ -376,7 +374,6 @@
             transform: rotate(170deg);
         }
 
-        /* Секция "Обо мне" - ИЗМЕНЕНО */
         .about-section {
             background: linear-gradient(rgba(90, 65, 65, 0.9), rgba(0,0,0,0.9)), url("Балкон.jpg");
             background-size: cover;
@@ -409,8 +406,7 @@
         .about-text:last-child {
             margin-bottom: 0;
         }
-        
-        /* Секция "Услуги" - ИЗМЕНЕНО */
+
         .services-section {
             background-color: #251313;
             color: #F2F1ED;
@@ -422,7 +418,7 @@
         
         .services-wrapper {
             display: flex;
-            align-items: stretch; /* Добавлено для выравнивания высоты */
+            align-items: stretch;
             justify-content: space-between;
             width: 100%;
             gap: 60px;
@@ -470,6 +466,12 @@
             border-radius: 16px;
             object-fit: cover;
             transition: transform 0.5s ease;
+            filter: grayscale(100%);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+        
+        .services-image-frame:hover img {
+            filter: grayscale(0%);
         }
         
         .services-content {
@@ -487,10 +489,9 @@
             padding: 25px;
             border-radius: 8px;
             border-left: 4px solid #710014;
-            flex-grow: 1; /* Чтобы блок занимал всю доступную высоту */
+            flex-grow: 1;
         }
 
-        /* Секция "Мои достижения" */
         .achievements-section {
             background: linear-gradient(rgba(90, 65, 65, 0.9), rgba(0,0,0,0.9)), url("Балкон.jpg");
             background-size: cover;
@@ -502,8 +503,7 @@
             align-items: center;
             position: relative;
         }
-        
-        /* Секция "Технологии" */
+
         .technologies-section {
             background-color: #251313;
             color: #F2F1ED;
@@ -554,8 +554,7 @@
             align-items: center;
             text-align: center;
         }
-        
-        /* Сетка для технологий */
+
         .technologies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -647,8 +646,7 @@
         .achievement-button:hover {
             background-color: #850c22;
         }
-        
-        /* Подвал */
+
         footer {
             background-color: #000;
             color: #af0928;
@@ -711,8 +709,181 @@
             border-top: 1px solid #710014;
             color: #af0928;
         }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
         
-        /* Адаптивность для мобильных устройств */
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal {
+            background-color: #000;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #710014;
+            box-shadow: 0 15px 50px rgba(113, 0, 20, 0.7);
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+            display: none;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-image {
+            flex: 0 0 200px;
+            background-color: #251313;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .modal-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            background-color: #000;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            color: #F2F1ED;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            border-bottom: 2px solid #af0928;
+            padding-bottom: 10px;
+        }
+        
+        .modal-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #F2F1ED;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background-color: #710014;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 2001;
+            border: 2px solid #af0928;
+        }
+        
+        .close-modal:hover {
+            background-color: #af0928;
+        }
+        
+        .close-modal span {
+            color: #F2F1ED;
+            font-size: 20px;
+            font-weight: bold;
+            bottom: 5px;
+        }
+
+        .modal-nav {
+            position: absolute;
+            bottom: 15px;
+            width: 40px;
+            height: 40px;
+            background-color: #710014;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 2001;
+            border: 2px solid #af0928;
+        }
+        
+        .modal-nav:hover {
+            background-color: #af0928;
+        }
+        
+        .modal-prev {
+            left: calc(50% - 90px);
+        }
+        
+        .modal-next {
+            right: calc(50% - 90px);
+        }
+        
+        .modal-nav span {
+            color: #F2F1ED;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .modal-nav.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .modal-nav.disabled:hover {
+            background-color: #710014;
+        }
+
+        .modal-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 2001;
+        }
+        
+        .modal-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(113, 0, 20, 0.5);
+            border: 1px solid #af0928;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-indicator.active {
+            background-color: #af0928;
+            transform: scale(1.5);
+        }
+        
         @media (max-width: 1200px) {
             .image-frame {
                 width: 450px;
@@ -873,6 +1044,41 @@
     .about-text {
         font-size: 17px;
     }
+
+    .modal {
+        max-width: 450px;
+        min-height: 450px;
+    }
+    
+    .modal-image {
+        flex: 0 0 180px;
+    }
+    
+    .modal-content {
+        padding: 25px;
+    }
+    
+    .modal-title {
+        font-size: 22px;
+    }
+    
+    .modal-description {
+        font-size: 15px;
+    }
+    
+    .modal-nav {
+        width: 35px;
+        height: 35px;
+        bottom: 12px;
+    }
+    
+    .modal-prev {
+        left: calc(50% - 60px);
+    }
+    
+    .modal-next {
+        right: calc(50% - 60px);
+    }
 }
 
 @media (max-width: 850px) {
@@ -899,6 +1105,19 @@
     .description {
         margin-left: 0;
         margin-right: 0;
+    }
+    
+    .modal {
+        max-width: 400px;
+        min-height: 400px;
+    }
+    
+    .modal-prev {
+        left: calc(50% - 55px);
+    }
+    
+    .modal-next {
+        right: calc(50% - 55px);
     }
 }
         
@@ -1026,6 +1245,56 @@
             .hero {
                 padding: 60px 0;
             }
+
+            .modal {
+                max-width: 350px;
+                min-height: 350px;
+            }
+            
+            .modal-image {
+                flex: 0 0 150px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .modal-title {
+                font-size: 20px;
+            }
+            
+            .modal-description {
+                font-size: 14px;
+            }
+            
+            .close-modal {
+                top: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+            }
+            
+            .close-modal span {
+                font-size: 18px;
+            }
+            
+            .modal-nav {
+                width: 30px;
+                height: 30px;
+                bottom: 10px;
+            }
+            
+            .modal-nav span {
+                font-size: 16px;
+            }
+            
+            .modal-prev {
+                left: calc(50% - 50px);
+            }
+            
+            .modal-next {
+                right: calc(50% - 50px);
+            }
         }
         
         @media (max-width: 480px) {
@@ -1123,6 +1392,43 @@
             .hero-content, .hero-image {
                 padding: 0 10px;
             }
+
+            .modal {
+                max-width: 300px;
+                min-height: 300px;
+            }
+            
+            .modal-image {
+                flex: 0 0 120px;
+            }
+            
+            .modal-content {
+                padding: 15px;
+            }
+            
+            .modal-title {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+            
+            .modal-description {
+                font-size: 13px;
+                margin-bottom: 15px;
+            }
+            
+            .modal-nav {
+                width: 25px;
+                height: 25px;
+                bottom: 8px;
+            }
+            
+            .modal-prev {
+                left: calc(50% - 40px);
+            }
+            
+            .modal-next {
+                right: calc(50% - 40px);
+            }
         }
         
         @media (max-width: 360px) {
@@ -1163,6 +1469,19 @@
             
             .hero-content, .hero-image {
                 padding: 0 5px;
+            }
+            
+            .modal {
+                max-width: 280px;
+                min-height: 280px;
+            }
+            
+            .modal-prev {
+                left: calc(50% - 35px);
+            }
+            
+            .modal-next {
+                right: calc(50% - 35px);
             }
         }
     </style>
@@ -1234,10 +1553,10 @@
             <h2 class="section-title">Обо мне</h2>
             <div class="about-content">
                 <p class="about-text">
-                    Я веб-разработчик с более чем 3-летним опытом работы в сфере IT. Моя специализация — создание современных, адаптивных веб-сайтов и веб-приложений, которые не только выглядят привлекательно, но и эффективно решают бизнес-задачи клиентов.
+                    Я веб-разработчик с более чем 3-летним опытом работы в сфере IT. Моя специализация — создание современных, адаптивных веб-сайтов и веб-приложений.
                 </p>
                 <p class="about-text">
-                    Имею техническое образование в IT-сфере и постоянно совершенствую свои навыки. Регулярно прохожу курсы, изучаю новые технологии и фреймворки, чтобы оставаться в курсе последних тенденций веб-разработки. В своей работе я придерживаюсь индивидуального подхода к каждому проекту. Для меня важно не просто выполнить техническое задание, а понять потребности клиента, его цели и ожидания. Внимание к деталям, ответственность и стремление к идеальному результату — вот принципы, которые лежат в основе моей работы.
+                    Имею техническое образование в IT-сфере и постоянно совершенствую свои навыки. В своей работе я придерживаюсь индивидуального подхода к каждому проекту. Для меня важно не просто выполнить техническое задание, а понять потребности клиента, его цели и ожидания. Внимание к деталям, ответственность и стремление к идеальному результату — вот принципы, которые лежат в основе моей работы.
                 </p>
             </div>
         </div>
@@ -1249,7 +1568,7 @@
             <div class="services-wrapper">
                 <div class="services-image">
                     <div class="services-image-frame">
-                        <img src="Сайт.jpg" alt="Веб-разработка">
+                        <img src="сайт.png" alt="Веб-разработка">
                     </div>
                 </div>
                 <div class="services-content">
@@ -1295,21 +1614,21 @@
                     <img src="Пластинка красная.jpg" alt="Клиенты" class="achievement-image">
                     <h3 class="achievement-title">Увеличение клиентской базы</h3>
                     <p class="achievement-description">За последний год количество клиентов увеличилось на 40%, что подтверждает высокий уровень доверия к моим услугам.</p>
-                    <button class="achievement-button">Подробнее</button>
+                    <button class="achievement-button" data-index="0">Подробнее</button>
                 </div>
                 
                 <div class="achievement-card">
                     <img src="Кот.jpg" alt="Награда" class="achievement-image">
                     <h3 class="achievement-title">Профессиональное признание</h3>
                     <p class="achievement-description">Получение награды "Лучший веб-разработчик года" в 2025 году среди независимых специалистов Беларуси.</p>
-                    <button class="achievement-button">Подробнее</button>
+                    <button class="achievement-button" data-index="1">Подробнее</button>
                 </div>
                 
                 <div class="achievement-card">
                     <img src="Луна.jpg" alt="Проекты" class="achievement-image">
                     <h3 class="achievement-title">Множество успешных проектов</h3>
                     <p class="achievement-description">Более 50 успешно реализованных проектов для клиентов из различных отраслей бизнеса за последние 2 года.</p>
-                    <button class="achievement-button">Подробнее</button>
+                    <button class="achievement-button" data-index="2">Подробнее</button>
                 </div>
             </div>
         </div>
@@ -1345,7 +1664,7 @@
                 
                 <div class="technology-card">
                     <div class="technology-icon">
-                        <i class="fab fa-react"></i>
+                        <img src="Канва.png" alt="Canva" style="width: 48px; height: 48px; object-fit: contain;">
                     </div>
                     <h3 class="technology-title">Canva</h3>
                     <p class="technology-description">Создание профессионального графического дизайна для веб-сайтов и социальных сетей. Разработка логотипов, баннеров, презентаций и маркетинговых материалов.</p>
@@ -1412,7 +1731,93 @@
         </div>
     </footer>
 
+    <div class="modal-overlay" id="modalOverlay">
+
+        <div class="modal" id="modal1" data-index="0">
+            <div class="close-modal" onclick="closeModal()">
+                <span>×</span>
+            </div>
+            <div class="modal-nav modal-prev" onclick="prevModal()">
+                <span>‹</span>
+            </div>
+            <div class="modal-nav modal-next" onclick="nextModal()">
+                <span>›</span>
+            </div>
+            <div class="modal-image">
+                <img src="баннер 1.jpg" alt="Клиенты">
+            </div>
+            <div class="modal-content">
+                <h3 class="modal-title">Увеличение клиентской базы</h3>
+                <div class="modal-description">
+                    <p>За последний год количество постоянных клиентов увеличилось на 40%. Это результат качественного выполнения проектов, индивидуального подхода и рекомендаций довольных клиентов.</p>
+                </div>
+            </div>
+            <div class="modal-indicators">
+                <div class="modal-indicator active" data-index="0"></div>
+                <div class="modal-indicator" data-index="1"></div>
+                <div class="modal-indicator" data-index="2"></div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal2" data-index="1">
+            <div class="close-modal" onclick="closeModal()">
+                <span>×</span>
+            </div>
+            <div class="modal-nav modal-prev" onclick="prevModal()">
+                <span>‹</span>
+            </div>
+            <div class="modal-nav modal-next" onclick="nextModal()">
+                <span>›</span>
+            </div>
+            <div class="modal-image">
+                <img src="баннер 2.jpg" alt="Награда">
+            </div>
+            <div class="modal-content">
+                <h3 class="modal-title">Профессиональное признание</h3>
+                <div class="modal-description">
+                    <p>В 2025 году получена награда "Лучший веб-разработчик года" среди независимых специалистов Беларуси за выдающиеся достижения в области веб-разработки.</p>
+                </div>
+            </div>
+            <div class="modal-indicators">
+                <div class="modal-indicator" data-index="0"></div>
+                <div class="modal-indicator active" data-index="1"></div>
+                <div class="modal-indicator" data-index="2"></div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal3" data-index="2">
+            <div class="close-modal" onclick="closeModal()">
+                <span>×</span>
+            </div>
+            <div class="modal-nav modal-prev" onclick="prevModal()">
+                <span>‹</span>
+            </div>
+            <div class="modal-nav modal-next" onclick="nextModal()">
+                <span>›</span>
+            </div>
+            <div class="modal-image">
+                <img src="баннер 3.jpg" alt="Проекты">
+            </div>
+            <div class="modal-content">
+                <h3 class="modal-title">Множество успешных проектов</h3>
+                <div class="modal-description">
+                    <p>За последние 2 года успешно реализовано более 50 проектов для клиентов из различных отраслей бизнеса, включая корпоративные сайты, интернет-магазины и веб-приложения.</p>
+                </div>
+            </div>
+            <div class="modal-indicators">
+                <div class="modal-indicator" data-index="0"></div>
+                <div class="modal-indicator" data-index="1"></div>
+                <div class="modal-indicator active" data-index="2"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        let currentModalIndex = 0;
+        const modals = document.querySelectorAll('.modal');
+        const totalModals = modals.length;
+        const modalOverlay = document.getElementById('modalOverlay');
+        
         function toggleMobileMenu() {
             const burgerMenu = document.getElementById('burgerMenu');
             const mobileNav = document.getElementById('mobileNav');
@@ -1443,6 +1848,118 @@
                 closeMobileMenu();
             }
         });
+
+        function openModal(index) {
+            currentModalIndex = index;
+
+            modals.forEach(modal => {
+                modal.classList.remove('active');
+            });
+
+            const modalToShow = modals[currentModalIndex];
+            if (modalToShow) {
+                modalToShow.classList.add('active');
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                updateIndicators();
+            }
+        }
+
+        function nextModal() {
+            if (currentModalIndex < totalModals - 1) {
+                openModal(currentModalIndex + 1);
+            } else {
+                openModal(0);
+            }
+        }
+
+        function prevModal() {
+            if (currentModalIndex > 0) {
+                openModal(currentModalIndex - 1);
+            } else {
+                openModal(totalModals - 1);
+            }
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+
+            setTimeout(() => {
+                modals.forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            }, 300);
+        }
+
+        function updateIndicators() {
+            const indicators = document.querySelectorAll('.modal-indicator');
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active');
+                if (parseInt(indicator.getAttribute('data-index')) === currentModalIndex) {
+                    indicator.classList.add('active');
+                }
+            });
+        }
+
+        document.querySelectorAll('.achievement-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                openModal(index);
+            });
+        });
+
+        document.querySelectorAll('.modal-indicator').forEach(indicator => {
+            indicator.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                openModal(index);
+            });
+        });
+
+        modalOverlay.addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+
+            if (modalOverlay.classList.contains('active')) {
+                if (event.key === 'ArrowRight') {
+                    nextModal();
+                } else if (event.key === 'ArrowLeft') {
+                    prevModal();
+                }
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        modalOverlay.addEventListener('touchstart', function(event) {
+            touchStartX = event.changedTouches[0].screenX;
+        });
+
+        modalOverlay.addEventListener('touchend', function(event) {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextModal();
+            }
+            
+            if (touchEndX > touchStartX + swipeThreshold) {
+                prevModal();
+            }
+        }
     </script>
 </body>
 </html>
